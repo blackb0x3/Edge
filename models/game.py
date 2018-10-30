@@ -86,10 +86,14 @@ class ScrabbleGame:
             self.human_player.rack.extend(self.draw_tiles(7))
 
     def draw_tiles(self, tiles_to_draw):
+        if len(self.bag) == 0:
+            return []
+
         draw_list = []
         
         while tiles_to_draw > 0:
-            draw_list.append(self.bag.pop(random.randint(0, len(self.bag) - 1)))
+            if len(self.bag) > 0:
+                draw_list.append(self.bag.pop(random.randint(0, len(self.bag) - 1)))
             tiles_to_draw -= 1
 
         return draw_list
